@@ -12,17 +12,6 @@ const helmet = require('helmet');
 
 const app = express();
 
-app.use(helmet({
-  frameguard: {action: 'deny'},
-  contentSecurityPolicy: {
-    directives:{
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", 'style.com'],
-      styleSrc: ["'self'"]
-    }
-  },
-  dnsPrefetchControl: false
-}));
 
 app.use('/public', express.static(process.cwd() + '/public'));
 

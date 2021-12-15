@@ -12,49 +12,107 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./public/style.css" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/> -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'/>
   </head>
   <body>
-    <header>
-      <h1>ISQA_5 - Nasdaq Stock Price Checker</h1>
-    </header>
-    <div id="userstories">
-      <h3>Example usage:</h3>
-      <code>/api/stock-prices?stock=GOOG</code>
-      <br />
-      <code>/api/stock-prices?stock=GOOG&amp;like=true</code>
-      <br />
-      <code>/api/stock-prices?stock=GOOG&amp;stock=MSFT</code>
-      <br />
-      <code>/api/stock-prices?stock=GOOG&amp;stock=MSFT&amp;like=true</code>
-      <br />
-      <h3>Example return:</h3>
-      <code>{"stockData":{"stock":"GOOG","price":786.90,"likes":1}}</code>
-      <br />
-      <code>
-        {"stockData":[{"stock":"MSFT","price":62.30,"rel_likes":-1},{"stock":"GOOG","price":786.90,"rel_likes":1}]}
-      </code>
+    <div id='container'>
+      <header>
+        <h1>Stock Price Checker</h1>
+        <p>(a project for freeCodeCamp's Information Security and Quality Assurance certification)</p>
+      </header>
+      <br>
+      <div id="frontEnd">
+        <h2 class="text-align-left">Front-End:</h2>
+        <div class='myRow'>
+          <div>
+            <form class='formContainer holder' id="testForm2" class="border">
+              <h3>Get single price and total likes</h3>
+              <label for='stock'>Stock Name:</label>
+              <input  class='form-control' type="text" name="stock" placeholder="GOOG" required="" />
+              <div class='likeDiv'><p>Like this stock?</p><input class='form-control' type="checkbox" name="like" value="true" /></div>
+              <button class='myBtn' type="submit">Get Price!</button>
+              <small style="text-align: right;">GET /api/stock-prices</small>
+            </form>
+          </div>
+          <div>
+            <form class='formContainer holder' id="testForm" class="border">
+              <h3>Compare and get relative likes</h3>
+              <label for='stock'>First Stock Name:</label>
+              <input  class='form-control' type="text" name="stock" placeholder="GOOG" required="" />
+              <label for='stock'>Second Stock Name:</label>
+              <input  class='form-control' type="text" name="stock" placeholder="MSFT" required="" />
+              <div class='likeDiv'><p>Like both stock?</p><input class='form-control' type="checkbox" name="like" value="true" /></div>
+              <button class='myBtn' class='' type="submit">Get Price!</button>
+              <small style="text-align: right;">GET /api/stock-prices</small>
+            </form>
+        </div>
+      </div>
+        <pre><code id="jsonResult">Result will appear here..</code></pre>
+      </div>
+      <br>
+      <div id="userstories">
+        <h2>Example usage:</h2>
+        <pre>
+        <code>/api/stock-prices?stock=GOOG</code>
+        </pre>
+        <pre>
+        <code>/api/stock-prices?stock=GOOG&amp;like=true</code>
+        </pre>
+        <pre>
+        <code>/api/stock-prices?stock=GOOG&amp;stock=MSFT</code>
+        </pre>
+        <pre>
+        <code>/api/stock-prices?stock=GOOG&amp;stock=MSFT&amp;like=true</code>
+        </pre>
+        <br>
+        <h2>Example return:</h2>
+        <div class='explainDiv'>A GET request to the API for one stock ticker symbol returns a "stockData" JSON object similar to this one:</div>
+        <pre>
+          <code>
+{
+  stockData: {
+    stock: "GOOG",
+    price: "786.90",
+    likes: 1
+  }
+}
+          </code>
+        </pre>
+        <div class='explainDiv'>A GET request to the API to compare two ticker symbols returns a "stockData" JSON object containing an array within which are two objects, such as in this example:</div>
+        <pre>
+          <code>
+{
+  stockData: [
+    {
+      stock: "MSFT", 
+      price: "62.30",
+      rel_likes: -1
+    },
+    {
+      stock: "GOOG",
+      price: "786.90",
+      rel_likes: 1
+    }
+  ]
+}
+        </code>
+        </pre>
+      </div>
     </div>
-    <hr class="p-50" />
-    <div id="testui">
-      <h2 class="text-align-left">Front-End:</h2>
-      <h3>Get single price and total likes</h3>
-      <form id="testForm2" class="border">
-        <input type="text" name="stock" placeholder="GOOG" required="" />
-        <input type="checkbox" name="like" value="true" /> Like?
-        <br />
-        <button type="submit">Get Price!</button>
-      </form>
-      <h3>Compare and get relative likes</h3>
-      <form id="testForm" class="border">
-        <input type="text" name="stock" placeholder="GOOG" required="" />
-        <input type="text" name="stock" placeholder="MSFT" required="" />
-        <input type="checkbox" name="like" value="true" /> Like both?
-        <br />
-        <button type="submit">Get Price!</button>
-      </form>
-      <code id="jsonResult"></code>
-    </div>
-    <hr class="m-50 mt-200" />
+    <footer>
+      designed and coded by <a href="https://instagram.com/sat_ig462/" target="_blank">Sat_ig462</a> for freeCodeCamp's 
+      <a href="https://learn.freecodecamp.org/information-security-and-quality-assurance/information-security-and-quality-assurance-projects/stock-price-checker/" target="_blank" title="Visit the project page">Information Security and Quality Assurance - Stock Price Checker Project</a> 
+      and built upon the <a href="https://github.com/freeCodeCamp/boilerplate-project-library/" target="_blank" title="Project boilerplate on GitHub">
+      project-specific boilerplate code</a> using JavaScript,
+      <a href="https://api.jquery.com/" title="Learn more about jQuery">jQuery</a> and AJAX, 
+      <a href="https://nodejs.org/" title="Learn more about Node.js">Node.js</a>, 
+      <a href="https://expressjs.com/" target="_blank" title="Learn more about Express.js">Express.js</a>,
+      <a href="https://www.mongodb.com//" target="_blank" title="Learn more about MongoDB">MongoDB</a>,
+      <a href="https://www.chaijs.com/" target="_blank" title="Learn more about Chai.js">Chai.js</a>,
+      and a pinch of CSS.
+    </footer>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     <script src="/public/script.js"></script>
   </body>
 </html>
